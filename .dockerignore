@@ -1,0 +1,21 @@
+# .dockerignore
+# These files/folders are NOT sent to Docker during build
+# Makes builds faster and images smaller
+
+target/
+*.class
+*.jar
+*.war
+
+.git/
+.gitignore
+.idea/
+.vscode/
+*.iml
+
+README.md
+DEPLOYMENT.md
+
+# Don't copy local env files into the image
+.env
+*.env

@@ -1,0 +1,22 @@
+# render.yaml
+# Render reads this file from your GitHub repo root automatically.
+# It tells Render: "build and run the backend using Docker"
+
+services:
+  - type: web
+    name: parkmate-backend
+    runtime: docker                        # use Docker (reads Dockerfile automatically)
+    rootDir: backend                       # where your Spring Boot + Dockerfile lives
+    dockerfilePath: ./Dockerfile           # path to Dockerfile (relative to rootDir)
+    plan: free                             # free tier
+
+    # Render checks this URL to know if your app is alive
+    healthCheckPath: /actuator/health
+
+    # Environment variables — set these in Render dashboard
+    # (do NOT commit real secrets to GitHub)
+    envVars:
+      - key: JWT_SECRET
+        generateValue: true                # Render auto-generates a secure random value
+      - key: PORT
+        value: 8080
